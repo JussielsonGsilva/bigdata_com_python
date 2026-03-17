@@ -219,6 +219,34 @@ if __name__ == "__main__":
 🚀 Executar a limpeza
 python clean_old_dirs.py
 
+CRIANDO UM ARQUIVO NA RAIS .gitignore para não enviar arquivos grandes para o github
+❌ O GitHub NÃO aceita arquivos maiores que 100 MB.
+nano .gitignore
+
+# Ignorar arquivos grandes
+*.parquet
+*.pkl
+
+# Ignorar diretórios de dados
+data/processed/*
+data/raw/*
+
+# Exceto se quiser manter alguma estrutura vazia
+!data/
+!data/processed/
+!data/raw/
+
+# Ambiente virtual
+.venv/
+
+# Arquivos temporários
+__pycache__/
+*.log
+
+Depois adicione e faça commit:
+git add .gitignore
+git commit -m "Adicionando .gitignore para ignorar arquivos grandes e temporários"
+
 
 📜 Logs
 Todos os logs são salvos automaticamente em:
