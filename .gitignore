@@ -1,0 +1,19 @@
+# Ignorar arquivos grandes
+*.parquet
+*.pkl
+
+# Ignorar diretórios de dados
+data/processed/*
+data/raw/*
+
+# Exceto se quiser manter alguma estrutura vazia
+!data/
+!data/processed/
+!data/raw/
+
+# Ambiente virtual
+.venv/
+
+# Arquivos temporários
+__pycache__/
+*.log
