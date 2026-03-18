@@ -1,7 +1,7 @@
 # Big Data com Python — Processamento de Arquivos Gigantes em Chunks
 
 Este projeto demonstra um pipeline profissional para processamento de dados em larga escala utilizando Python, Pandas e leitura em chunks.  
-Ele foi desenvolvido para lidar com arquivos CSV gigantes (ex.: 16 GB) de forma eficiente, modular e escalável.
+Ele foi desenvolvido para lidar com arquivos CSV gigantes (ex.: 17 GB) de forma eficiente, modular e escalável.
 
 ---
 
@@ -45,7 +45,7 @@ bbigdata_com_python/
 ├── logs/
 │   └── pipeline.log
 │
-└── notebooks/
+└── analise/
 
 ---
 
@@ -59,7 +59,7 @@ PyArrow — escrita otimizada em Parquet **PyArrow** — otimizações internas
 ---
 
 # TRABALHADO COM UMA BASE DE DADOS DE 17G
-🟩 base com 178 milhões de linhas.
+🟩 base com 179 milhões de linhas.
 ## ⚙️ Como Executar
 
 1. Criar ambiente virtual:
@@ -151,7 +151,27 @@ logs/pipeline.log
 Projeto desenvolvido por Jussielson como parte de um portfólio profissional de Big Data com Python.
 
 INICIANDO AS ANÁLISES PRELIMINARES DOS DADOS
-/analises arquivo analisedados.py
+/analises  analisedados.py
 179.702.229 linhas
 Tempo total: 59,65 segundos
+
+INICIANDO TRATAMENTO DOS DADOS
+/analises tratamento_dados.py
+✔ Padronizar nomes das colunas
+✔ Converter Timestamp para datetime
+✔ Criar colunas derivadas (dia, mês, hora, dia da semana)
+✔ Criar coluna de diferença entre valores
+✔ Padronizar moedas
+✔ Remover duplicatas
+✔ Validar valores negativos
+✔ Salvar blocos tratados
+Tempo total de tratamento: 6.68 minutos
+9 blocos tratados
+todos salvos corretamente
+nenhum erro
+pipeline estável
+tempo excelente para o volume de dados
+
+agora temos os blocos tratados, vamos excluir os blocos antigos
+na pasta raiz--> rm -r data/processed/blocos
 
