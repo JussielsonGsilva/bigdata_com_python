@@ -110,18 +110,11 @@ data/processed/blocos/
 🟧 O blocos com 38 milhões de linhas.
 
 
-
-✔ Linhas por bloco
-
-
-✔ Tempo por bloco
-6 a 10 segundos
-
-
 🧹 Limpeza dos Chunks Inúteis
 Após gerar os blocos, os 180 chunks podem ser removidos.
 ✔ Arquivo responsável
 clean_chunks.py
+
 
 ✔ Código utilizado
 import os
