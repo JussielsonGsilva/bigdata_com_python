@@ -362,3 +362,25 @@
 2026-03-18 13:58:19.502 | INFO     | src.pipeline_chunks:process_csv_in_chunks:36 - Chunk 88 salvo em data/processed/chunks_dados_base/chunk_88.pkl
 2026-03-18 13:58:21.916 | INFO     | src.pipeline_chunks:process_csv_in_chunks:36 - Chunk 89 salvo em data/processed/chunks_dados_base/chunk_89.pkl
 2026-03-18 13:58:21.917 | INFO     | src.pipeline_chunks:process_csv_in_chunks:38 - Processamento concluído com sucesso!
+2026-03-18 14:20:12.339 | INFO     | src.recombine_in_blocks:recombine_in_blocks:23 - Iniciando recombinação em blocos de 10 chunks
+2026-03-18 14:20:12.339 | INFO     | src.recombine_in_blocks:recombine_in_blocks:24 - Lendo chunks de: data/processed/chunks_dados_base
+2026-03-18 14:20:12.339 | INFO     | src.recombine_in_blocks:recombine_in_blocks:33 - Total de chunks encontrados: 90
+2026-03-18 14:20:12.340 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 0 (10 chunks)
+2026-03-18 14:20:24.426 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 0 salvo em: data/processed/blocos/parte_0.pkl
+2026-03-18 14:20:24.426 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 1 (10 chunks)
+2026-03-18 14:20:33.885 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 1 salvo em: data/processed/blocos/parte_1.pkl
+2026-03-18 14:20:33.889 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 2 (10 chunks)
+2026-03-18 14:20:43.420 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 2 salvo em: data/processed/blocos/parte_2.pkl
+2026-03-18 14:20:43.421 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 3 (10 chunks)
+2026-03-18 14:20:53.146 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 3 salvo em: data/processed/blocos/parte_3.pkl
+2026-03-18 14:20:53.146 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 4 (10 chunks)
+2026-03-18 14:21:02.268 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 4 salvo em: data/processed/blocos/parte_4.pkl
+2026-03-18 14:21:02.269 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 5 (10 chunks)
+2026-03-18 14:21:11.712 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 5 salvo em: data/processed/blocos/parte_5.pkl
+2026-03-18 14:21:11.723 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 6 (10 chunks)
+2026-03-18 14:21:24.721 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 6 salvo em: data/processed/blocos/parte_6.pkl
+2026-03-18 14:21:24.732 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 7 (10 chunks)
+2026-03-18 14:21:37.955 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 7 salvo em: data/processed/blocos/parte_7.pkl
+2026-03-18 14:21:37.961 | INFO     | src.recombine_in_blocks:recombine_in_blocks:40 - Processando bloco 8 (10 chunks)
+2026-03-18 14:21:51.138 | INFO     | src.recombine_in_blocks:recombine_in_blocks:52 - Bloco 8 salvo em: data/processed/blocos/parte_8.pkl
+2026-03-18 14:21:51.152 | INFO     | src.recombine_in_blocks:recombine_in_blocks:56 - Recombinação em blocos concluída com sucesso!

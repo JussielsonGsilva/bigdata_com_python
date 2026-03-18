@@ -59,6 +59,7 @@ PyArrow — escrita otimizada em Parquet **PyArrow** — otimizações internas
 ---
 
 # TRABALHADO COM UMA BASE DE DADOS DE 17G
+🟩 base com 178 milhões de linhas.
 ## ⚙️ Como Executar
 
 1. Criar ambiente virtual:
@@ -95,16 +96,9 @@ data/processed/chunks_dados_base/
 89 chunks
 
 ✔ Linhas por chunk
-1.000.000 linhas por chunk
+2.000.000 linhas por chunk
 
-✔ Tempo total para gerar os chunks
-5 minutos
-
-✔ Tempo médio por chunk
-1.6 a 2.1 segundos
-
-
-🧩 Recombinação em Blocos (20 chunks por vez)
+🧩 Recombinação em Blocos (10 chunks por vez)
 ✔ Arquivo responsável
 run_recombine_blocks.py
 
@@ -112,10 +106,10 @@ run_recombine_blocks.py
 data/processed/blocos/
 
 ✔ Quantidade de blocos gerados
-9 blocos (parte_0.pkl até parte_8.pkl)
+8 blocos
 
 ✔ Linhas por bloco
-20 milhões de linhas por bloco
+
 
 ✔ Tempo por bloco
 6 a 10 segundos
