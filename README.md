@@ -107,6 +107,9 @@ data/processed/blocos/
 
 ✔ Quantidade de blocos gerados
 8 blocos
+🟧 O blocos com 38 milhões de linhas.
+
+
 
 ✔ Linhas por bloco
 
