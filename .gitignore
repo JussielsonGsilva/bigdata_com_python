@@ -1,5 +1,4 @@
 # Ignorar arquivos grandes
-*.parquet
 *.pkl
 
 # Ignorar diretórios de dados

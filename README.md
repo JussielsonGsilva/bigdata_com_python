@@ -106,8 +106,8 @@ run_recombine_blocks.py
 data/processed/blocos/
 
 ✔ Quantidade de blocos gerados
-8 blocos
-🟧 O blocos com 38 milhões de linhas.
+9 blocos do bloco 0 ao 8
+🟧 cada blocos com 38 milhões de linhas.
 
 
 🧹 Limpeza dos Chunks Inúteis
@@ -115,106 +115,11 @@ Após gerar os blocos, os 180 chunks podem ser removidos.
 ✔ Arquivo responsável
 clean_chunks.py
 
-
-✔ Código utilizado
-import os
-import shutil
-
-def clean_chunks():
-    chunks_dir = "data/processed/chunks_dados_base"
-
-    if os.path.exists(chunks_dir):
-        shutil.rmtree(chunks_dir)
-        print(f"Pasta removida: {chunks_dir}")
-    else:
-        print("Pasta de chunks não encontrada.")
-
-if __name__ == "__main__":
-    clean_chunks()
-
-✔ Executar limpeza
-python clean_chunks.py
-
-🧠 Recombinação Final em Streaming (sem estourar RAM)
-✔ Arquivo responsável
-run_recombine_final_stream.py
-
-✅ instalando o loguru dentro do ambiente virtual:
-pip install loguru
-
-🚀 Como executar
-python run_recombine_final_stream.py
-
-O processo vai:
-ler cada bloco (20 milhões de linhas)
-escrever no arquivo final
-descartar da memória
-manter a RAM sempre baixa
-
-✔ Formato final
-Parquet (otimizado para Big Data)
-
-✔ Arquivo final gerado
-data/processed/dados_base_final.parquet
-
-🔥 O que isso significa na prática
-✔ Um arquivo final Parquet com 180 milhões de linhas
-✔ Criado sem estourar memória
-✔ Usando escrita incremental real
-✔ Com logs profissionais
-✔ Com arquitetura modular
-✔ Com limpeza automática dos intermediários
-✔ Com recombinação em blocos e recombinação final em streaming
-
-🧹 Remover os blocos (parte_0.pkl … parte_8.pkl)
-criar arquvo--> clean_blocks.py
-dentro colocar:
-
-import os
-import shutil
-
-def clean_blocks():
-    blocks_dir = "data/processed/blocos"
-
-    if os.path.exists(blocks_dir):
-        shutil.rmtree(blocks_dir)
-        print(f"Pasta removida: {blocks_dir}")
-    else:
-        print("Pasta de blocos não encontrada.")
-
-if __name__ == "__main__":
-    clean_blocks()
-
-🚀 Executar a limpeza
-python clean_blocks.py
-
-🧹 Remover pastas antigas (chunks e chunks_teste)
-Criando o arquivo--> clean_old_dirs.py
-dentro colocar:
-
-import os
-import shutil
-
-def remove_if_exists(path):
-    if os.path.exists(path):
-        shutil.rmtree(path)
-        print(f"Pasta removida: {path}")
-    else:
-        print(f"Pasta não encontrada: {path}")
-
-if __name__ == "__main__":
-    remove_if_exists("data/processed/chunks")
-    remove_if_exists("data/processed/chunks_teste")
-
-🚀 Executar a limpeza
-python clean_old_dirs.py
-
 CRIANDO UM ARQUIVO NA RAIS .gitignore para não enviar arquivos grandes para o github
 ❌ O GitHub NÃO aceita arquivos maiores que 100 MB.
 nano .gitignore
 
 # Ignorar arquivos grandes
-*.parquet
 *.pkl
 
 # Ignorar diretórios de dados
@@ -244,5 +149,3 @@ logs/pipeline.log
 
 👨‍💻 Autor
 Projeto desenvolvido por Jussielson como parte de um portfólio profissional de Big Data com Python.
-
-
