@@ -149,3 +149,5 @@ logs/pipeline.log
 
 👨‍💻 Autor
 Projeto desenvolvido por Jussielson como parte de um portfólio profissional de Big Data com Python.
+
+INICIANDO AS ANÁLISES DOS DADOS
