@@ -80,9 +80,9 @@ python run_pipeline.py
 🏗️ Pipeline em Chunks
 O pipeline lê o CSV em lotes (chunks) e salva cada lote como .pkl:
 process_csv_in_chunks(
-    input_path="data/raw/arquivo_gigante.csv",
+    input_path="data/raw/dados_base.csv",
     output_dir="data/processed/chunks",
-    chunk_size=1_000_000
+    chunk_size=2_000_000
 )
 
 ✔ Arquivo responsável
@@ -92,7 +92,7 @@ run_pipeline.py
 data/processed/chunks_dados_base/
 
 ✔ Quantidade de chunks gerados
-180 chunks
+89 chunks
 
 ✔ Linhas por chunk
 1.000.000 linhas por chunk
