@@ -174,3 +174,35 @@ tempo excelente para o volume de dados
 agora temos os blocos tratados, vamos excluir os blocos antigos
 na pasta raiz--> rm -r data/processed/blocos
 
+
+🟩 1. Análise estatística avançada dos valores
+1: Distribuição dos Valores
+analise_valores.py
+Amount Paid
+Min: 0.000001
+Max: 8.15 trilhões
+Média: 3.97 milhões
+Mediana: 1.377
+P95: 485 mil
+P99: 9.65 milhões
+Linhas: 179.7 milhões
+
+Amount Received
+Min: 0.000001
+Max: 8.15 trilhões
+Média: 5.60 milhões
+Mediana: 1.375
+P95: 505 mil
+P99: 10.47 milhões
+Linhas: 179.7 milhões
+
+Diferença entre Valores
+Min: -5.32 trilhões
+Max: 8.06 trilhões
+Média: 1.63 milhões
+Mediana: 0
+Percentis (1–99): todos 0
+Linhas: 179.7 milhões
+
+Resumo: a maioria das transações não tem diferença entre pago e recebido, mas existem casos raros com diferenças gigantescas.
+
