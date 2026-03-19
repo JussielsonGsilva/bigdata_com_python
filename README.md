@@ -273,3 +273,30 @@ Origem → Destino	Fraudes
 272140 → 72043	     141
 72043  → 272140	     132
 Resumo: os fluxos suspeitos envolvem bancos completamente diferentes dos que dominam o volume geral, sugerindo redes específicas de movimentação ilícita.
+
+🪙 Análise 4 — Moedas (Currency Analysis)
+analise_moedas.py
+
+💱 Moedas Mais Utilizadas
+Moeda	Volume
+US DOLLAR	131.132.778
+EURO	82.504.412
+YUAN	26.041.764
+SHEKEL	15.981.308
+CANADIAN DOLLAR	12.215.891
+Resumo: o sistema é fortemente dominado por USD e EUR, que juntos representam a maior parte das transações.
+
+💱 Moedas Mais Associadas a Fraude
+Moeda	Fraudes
+US DOLLAR	180.878
+EURO	126.172
+YUAN	34.936
+UK POUND	20.442
+RUBLE	18.178
+Resumo: USD e EUR também lideram nas transações suspeitas, indicando que a maior parte das fraudes ocorre nas moedas mais populares.
+
+nsights Rápidos
+A distribuição de fraude acompanha a distribuição geral de moedas.
+Moedas menos comuns (como RUPEE, YEN, RUBLE) aparecem proporcionalmente mais em fraudes do que no volume total.
+USD domina tanto o volume quanto as operações suspeitas.
+
