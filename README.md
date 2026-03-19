@@ -179,7 +179,6 @@ na pasta raiz--> rm -r data/processed/blocos
 analide_valores.py
 
 1: Distribuição dos Valores
-analise_valores.py
 Amount Paid
 Min: 0.000001
 Max: 8.15 trilhões
@@ -208,7 +207,7 @@ Linhas: 179.7 milhões
 
 Resumo: a maioria das transações não tem diferença entre pago e recebido, mas existem casos raros com diferenças gigantescas.
 
-📘 Análise Temporal (por mês + fraude ao longo do tempo)
+📘 2 Análise Temporal (por mês + fraude ao longo do tempo)
 analise_temporal.py
 
 Volume Total por Mês
@@ -234,3 +233,43 @@ O período 2022-08 a 2022-10 concentra quase todas as transações e fraudes.
 Outubro/2022 apresenta o maior número de fraudes, mesmo com volume menor que agosto e setembro.
 Após novembro, o volume despenca, sugerindo fim do dataset ou mudança operacional.
 
+
+🟦 Análise 3 — Fluxo entre Bancos (origem → destino)
+analise_bancos.py
+
+Bancos que Mais Enviam
+Banco	Envios
+70	17.140.417
+12	956.035
+11	945.276
+0	920.515
+20	901.910
+Resumo: o banco 70 domina completamente o volume de envios, muito acima dos demais.
+
+Bancos que Mais Recebem
+Banco	Recebimentos
+27	477.448
+12	419.820
+11	404.538
+0	347.717
+112	333.809
+Resumo: o banco 27 é o principal destino das transações.
+
+Maiores Fluxos Entre Bancos
+Origem → Destino	Volume
+27 → 27	91.488
+112 → 112	79.871
+12 → 12	75.803
+0 → 0	60.734
+20 → 20	56.064
+Resumo: há forte concentração de transações dentro do próprio banco, indicando operações
+        internas intensas.
+
+Fluxos Suspeitos (Lavagem)
+Origem → Destino	Fraudes
+272142 → 272896	     192
+272896 → 272142	     176
+272142 → 272142	     156
+272140 → 72043	     141
+72043  → 272140	     132
+Resumo: os fluxos suspeitos envolvem bancos completamente diferentes dos que dominam o volume geral, sugerindo redes específicas de movimentação ilícita.
