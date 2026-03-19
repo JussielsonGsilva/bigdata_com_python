@@ -300,3 +300,57 @@ A distribuição de fraude acompanha a distribuição geral de moedas.
 Moedas menos comuns (como RUPEE, YEN, RUBLE) aparecem proporcionalmente mais em fraudes do que no volume total.
 USD domina tanto o volume quanto as operações suspeitas.
 
+🕵️ Análise 5 — Padrões de Fraude (is_laundering)
+Resumo Geral
+Fraudes detectadas: 225.546
+Total de transações: 179.702.079
+Taxa de fraude: 0,12%
+
+⏰ Fraude por Hora
+Hora	Fraudes
+11h–14h	pico (13k–14k fraudes)
+0h–4h	menor atividade (~6,6k fraudes)
+Resumo: fraudes se concentram no horário comercial, sugerindo operações automatizadas ou mascaradas em meio ao fluxo normal.
+
+⏰ Fraude Dia sa Semana
+Dia	Fraudes
+Quinta (4)	34.350
+Terça (2)	32.892
+Segunda (1)	32.813
+Domingo (6)	29.596
+Resumo: quinta‑feira é o dia mais crítico; finais de semana têm menos fraude.
+
+🏦 Bancos Mais Envolvidos (Origem)
+Banco	Fraudes
+70	24.297
+0	1.835
+20	1.804
+11	1.628
+12	1.431
+Resumo: o banco 70 domina a origem das transações suspeitas.
+
+🏦 Bancos Mais Envolvidos (Destino)
+Banco	Fraudes
+20	1.916
+0	1.804
+11	1.680
+12	1.521
+27	989
+Resumo: o banco 20 é o principal destino de fraudes.
+
+💱 Moedas Mais Usadas em Fraude
+Moeda	Fraudes
+US DOLLAR	180.878
+EURO	126.172
+YUAN	34.936
+UK POUND	20.442
+RUBLE	18.178
+Resumo: USD e EUR concentram a maior parte das fraudes, refletindo seu uso predominante no sistema.
+
+🔍 Insights Rápidos
+Fraudes seguem o fluxo normal do sistema (horário comercial e dias úteis).
+Banco 70 é o maior emissor de transações suspeitas.
+Banco 20 é o principal receptor.
+Moedas mais comuns também são as mais usadas em fraude.
+Padrão indica operações automatizadas, não ações manuais isoladas.
+
