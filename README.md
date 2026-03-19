@@ -40,12 +40,11 @@ bbigdata_com_python/
 │   └── processed/
 │       ├── chunks_dados_base/      ← (180 chunks gerados)
 │       ├── blocos/                 ← (9 blocos gerados)
-│       └── dados_base_final.parquet
 │
 ├── logs/
 │   └── pipeline.log
 │
-└── analise/
+└── analises/
 
 ---
 
