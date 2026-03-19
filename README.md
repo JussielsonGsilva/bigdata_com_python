@@ -176,6 +176,8 @@ na pasta raiz--> rm -r data/processed/blocos
 
 
 🟩 1. Análise estatística avançada dos valores
+analide_valores.py
+
 1: Distribuição dos Valores
 analise_valores.py
 Amount Paid
@@ -205,4 +207,30 @@ Percentis (1–99): todos 0
 Linhas: 179.7 milhões
 
 Resumo: a maioria das transações não tem diferença entre pago e recebido, mas existem casos raros com diferenças gigantescas.
+
+📘 Análise Temporal (por mês + fraude ao longo do tempo)
+analise_temporal.py
+
+Volume Total por Mês
+  Mês	Transações
+2022-08	59.468.086
+2022-09	56.137.066
+2022-10	54.821.337
+2022-11	9.269.209
+2022-12	6.132
+2023-01	249
+
+Transações Suspeitas por Mês
+
+  Mês	Fraudes
+2022-08	46.040
+2022-09	67.372
+2022-10	75.263
+2022-11	33.013
+2022-12	3.704
+2023-01	154
+
+O período 2022-08 a 2022-10 concentra quase todas as transações e fraudes.
+Outubro/2022 apresenta o maior número de fraudes, mesmo com volume menor que agosto e setembro.
+Após novembro, o volume despenca, sugerindo fim do dataset ou mudança operacional.
 
