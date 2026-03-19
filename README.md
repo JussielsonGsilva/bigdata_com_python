@@ -301,6 +301,7 @@ Moedas menos comuns (como RUPEE, YEN, RUBLE) aparecem proporcionalmente mais em 
 USD domina tanto o volume quanto as operações suspeitas.
 
 🕵️ Análise 5 — Padrões de Fraude (is_laundering)
+analise_fraude.py
 Resumo Geral
 Fraudes detectadas: 225.546
 Total de transações: 179.702.079
@@ -353,4 +354,54 @@ Banco 70 é o maior emissor de transações suspeitas.
 Banco 20 é o principal receptor.
 Moedas mais comuns também são as mais usadas em fraude.
 Padrão indica operações automatizadas, não ações manuais isoladas.
+
+
+Análise 6 — Correlação Entre Variáveis
+analise_correlacao.py
+
+ob: Instalar o pyarrow
+pip install pyarrow
+
+📌 1. A correlação é extremamente baixa
+Todas as variáveis têm correlação entre –0.006 e +0.006 com fraude.
+Isso significa:
+👉 Nenhuma variável isolada explica a fraude.
+👉 Não existe um “sinal óbvio” que diferencia fraude de não fraude.
+Isso é exatamente o que acontece em sistemas financeiros reais:
+fraudadores tentam imitar o comportamento normal
+padrões são sutis
+não existe um único indicador forte
+Isso é um achado importante.
+
+📌 2. As variáveis mais correlacionadas (ainda que fracas)
++ dia da semana (0.0062)
+Fraudes acontecem um pouco mais em dias úteis, especialmente quinta-feira (como vimos na Análise 5).
++ hora (0.0048)
+Fraudes se concentram no horário comercial.
++ amount_paid / amount_received (~0.001)
+Valores maiores têm uma tendência mínima de aparecer em fraude, mas nada forte.
+
+📌 3. Variáveis com correlação negativa
+– moedas e bancos (~ –0.006)
+Isso significa:
+não existe uma moeda “forte” para fraude
+não existe um banco “forte” para fraude
+fraudadores distribuem operações para parecerem normais
+Isso confirma que o comportamento fraudulento é disperso, não concentrado.
+
+✔ A fraude não é linear
+Correlação linear não captura padrões complexos.
+
+✔ A fraude depende de combinações de variáveis, não de uma só
+Isso é típico de:
+lavagem de dinheiro
+fraude bancária
+transações estruturadas
+
+✔ O próximo passo natural seria usar modelos de machine learning
+Como:
+Random Forest
+XGBoost
+Regressão logística
+Redes neurais
 
