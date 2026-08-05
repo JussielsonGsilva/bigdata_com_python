@@ -1,6 +1,7 @@
 import pandas as pd
 from tqdm import tqdm
 import os
+from src.formatos import salvar_dados
 from src.logger_config import get_logger
 
 logger = get_logger()
@@ -28,10 +29,9 @@ def process_csv_in_chunks(
         for i, chunk in enumerate(
             tqdm(pd.read_csv(input_path, chunksize=chunk_size))
         ):
-            output_file = os.path.join(output_dir, f"chunk_{i}.pkl")
-
-            # Salva o chunk como PKL
-            chunk.to_pickle(output_file)
+            # Grava em Parquet: ocupa cerca de um quarto do espaço do pickle
+            # e pode ser lido por outras ferramentas
+            output_file = salvar_dados(chunk, output_dir, f"chunk_{i}")
 
             logger.info(f"Chunk {i} salvo em {output_file}")
 

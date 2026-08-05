@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from tqdm import tqdm
+from src.formatos import ler_dados, listar_arquivos_de_dados, salvar_dados
 from src.logger_config import get_logger
 
 logger = get_logger()
@@ -23,11 +24,7 @@ def recombine_in_blocks(
     logger.info(f"Iniciando recombinação em blocos de {block_size} chunks")
     logger.info(f"Lendo chunks de: {chunks_dir}")
 
-    chunk_files = sorted([
-        os.path.join(chunks_dir, f)
-        for f in os.listdir(chunks_dir)
-        if f.endswith(".pkl")
-    ])
+    chunk_files = listar_arquivos_de_dados(chunks_dir)
 
     total_chunks = len(chunk_files)
     logger.info(f"Total de chunks encontrados: {total_chunks}")
@@ -41,13 +38,12 @@ def recombine_in_blocks(
 
         dfs = []
         for file in tqdm(block_files):
-            df = pd.read_pickle(file)
+            df = ler_dados(file)
             dfs.append(df)
 
         block_df = pd.concat(dfs, ignore_index=True)
 
-        output_file = os.path.join(output_dir, f"parte_{block_index}.pkl")
-        block_df.to_pickle(output_file)
+        output_file = salvar_dados(block_df, output_dir, f"parte_{block_index}")
 
         logger.info(f"Bloco {block_index} salvo em: {output_file}")
 

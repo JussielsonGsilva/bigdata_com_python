@@ -113,18 +113,27 @@ class TesteRecombinacaoEmStreaming(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.pasta = tempfile.mkdtemp(prefix="blocos_teste_")
+        cls.raiz = tempfile.mkdtemp(prefix="blocos_teste_")
+
+        # A saída fica FORA da pasta de entrada: como a listagem passou a
+        # aceitar .parquet, gravar o resultado junto dos blocos faria a função
+        # reler o próprio arquivo final como se fosse mais um bloco.
+        cls.pasta = str(Path(cls.raiz) / "entrada")
+        cls.saida = Path(cls.raiz) / "saida"
+        Path(cls.pasta).mkdir()
+        cls.saida.mkdir()
+
         cls.total_de_linhas = criar_blocos(cls.pasta)
 
     @classmethod
     def tearDownClass(cls):
-        shutil.rmtree(cls.pasta, ignore_errors=True)
+        shutil.rmtree(cls.raiz, ignore_errors=True)
 
     def teste_arquivo_final_contem_todas_as_linhas_dos_blocos(self):
         import pandas as pd
         from src.recombine_stream import recombinar_blocos_em_streaming
 
-        destino = Path(self.pasta) / "final.parquet"
+        destino = self.saida / "final.parquet"
         recombinar_blocos_em_streaming(self.pasta, str(destino))
 
         self.assertTrue(destino.exists(), "arquivo final não foi criado")
@@ -134,7 +143,7 @@ class TesteRecombinacaoEmStreaming(unittest.TestCase):
         import pandas as pd
         from src.recombine_stream import recombinar_blocos_em_streaming
 
-        destino = Path(self.pasta) / "colunas.parquet"
+        destino = self.saida / "colunas.parquet"
         recombinar_blocos_em_streaming(self.pasta, str(destino))
 
         primeiro_bloco = pd.read_pickle(Path(self.pasta) / "parte_0.pkl")
@@ -151,7 +160,7 @@ class TesteRecombinacaoEmStreaming(unittest.TestCase):
             """,
             operacao=f"""
                 recombinar_blocos_em_streaming(
-                    {self.pasta!r}, {self.pasta + "/s.parquet"!r})
+                    {self.pasta!r}, {str(self.saida / "s.parquet")!r})
             """,
         )
 
@@ -166,7 +175,7 @@ class TesteRecombinacaoEmStreaming(unittest.TestCase):
                           for a in sorted(os.listdir({self.pasta!r}))
                           if a.endswith(".pkl")]
                 pd.concat(partes, ignore_index=True).to_parquet(
-                    {self.pasta + "/i.parquet"!r})
+                    {str(self.saida / "i.parquet")!r})
             """,
         )
 

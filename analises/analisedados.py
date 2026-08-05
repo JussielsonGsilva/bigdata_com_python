@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.formatos import ler_dados, listar_arquivos_de_dados
 from src.caminhos import BLOCOS
 
 
@@ -20,18 +21,14 @@ def analisar_blocos(blocks_dir=str(BLOCOS)):
         "total_nulos": 0
     }
 
-    arquivos = sorted(os.listdir(blocks_dir))
+    arquivos = listar_arquivos_de_dados(blocks_dir)
 
     print(f"Encontrados {len(arquivos)} blocos para análise.\n")
 
     for arquivo in arquivos:
-        if not arquivo.endswith(".pkl"):
-            continue
+        print(f"🔍 Lendo bloco: {Path(arquivo).name}")
 
-        caminho = os.path.join(blocks_dir, arquivo)
-        print(f"🔍 Lendo bloco: {arquivo}")
-
-        df = pd.read_pickle(caminho)
+        df = ler_dados(arquivo)
 
         # Atualiza total de linhas
         resultados["total_linhas"] += len(df)

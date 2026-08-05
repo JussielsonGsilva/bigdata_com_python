@@ -7,13 +7,14 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.formatos import ler_dados, listar_arquivos_de_dados
 from src.caminhos import BLOCOS_TRATADOS
 
 
 def analise_fraude(blocks_dir=str(BLOCOS_TRATADOS)):
     inicio = time.time()
 
-    arquivos = sorted(os.listdir(blocks_dir))
+    arquivos = listar_arquivos_de_dados(blocks_dir)
 
     # Acumuladores
     total_fraudes = 0
@@ -28,11 +29,9 @@ def analise_fraude(blocks_dir=str(BLOCOS_TRATADOS)):
     print(f"Analisando {len(arquivos)} blocos tratados...\n")
 
     for arquivo in arquivos:
-        if not arquivo.endswith(".pkl"):
-            continue
 
         print(f"🕵️ Processando: {arquivo}")
-        df = pd.read_pickle(os.path.join(blocks_dir, arquivo))
+        df = ler_dados(arquivo)
 
         total_transacoes += len(df)
 

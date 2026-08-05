@@ -6,7 +6,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.formatos import ler_dados, listar_arquivos_de_dados, salvar_dados
 from src.caminhos import BLOCOS, BLOCOS_TRATADOS
+from src.otimizacao import otimizar_tipos, resumo_de_memoria
 
 
 
@@ -19,18 +21,14 @@ def tratar_blocos(
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    arquivos = sorted(os.listdir(blocks_dir))
+    arquivos = listar_arquivos_de_dados(blocks_dir)
 
     print(f"Encontrados {len(arquivos)} blocos para tratamento.\n")
 
     for arquivo in arquivos:
-        if not arquivo.endswith(".pkl"):
-            continue
+        print(f"🔧 Tratando bloco: {Path(arquivo).name}")
 
-        caminho = os.path.join(blocks_dir, arquivo)
-        print(f"🔧 Tratando bloco: {arquivo}")
-
-        df = pd.read_pickle(caminho)
+        df = ler_dados(arquivo)
 
         # -----------------------------
         # 1. Padronizar nomes das colunas
@@ -76,12 +74,24 @@ def tratar_blocos(
         df = df[(df["amount_received"] >= 0) & (df["amount_paid"] >= 0)]
 
         # -----------------------------
-        # 7. Salvar bloco tratado
+        # 7. Otimizar tipos antes de salvar
         # -----------------------------
-        output_path = os.path.join(output_dir, arquivo)
-        df.to_pickle(output_path)
+        # Feito por último, depois das colunas derivadas existirem, para que
+        # elas também sejam reduzidas. Não altera nenhum valor — as colunas
+        # monetárias ficam de fora justamente para não perder precisão.
+        memoria_antes = resumo_de_memoria(df)
+        df = otimizar_tipos(df)
+        memoria_depois = resumo_de_memoria(df)
 
-        print(f"✔ Bloco tratado e salvo: {arquivo}\n")
+        # -----------------------------
+        # 8. Salvar bloco tratado
+        # -----------------------------
+        nome_base = Path(arquivo).stem
+        output_path = salvar_dados(df, output_dir, nome_base)
+
+        print(f"✔ Bloco tratado e salvo: {Path(output_path).name}")
+        print(f"  memória: {memoria_antes:.1f} MB → {memoria_depois:.1f} MB "
+              f"({100 * (1 - memoria_depois / memoria_antes):.0f}% menos)\n")
 
     fim = time.time()
     print(f"Tempo total de tratamento: {round(fim - inicio, 2)} segundos")

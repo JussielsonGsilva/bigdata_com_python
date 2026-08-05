@@ -20,6 +20,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 from tqdm import tqdm
 
+from src.formatos import ler_dados, listar_arquivos_de_dados
 from src.logger_config import get_logger
 
 logger = get_logger()
@@ -40,15 +41,11 @@ def recombinar_blocos_em_streaming(blocos_dir, arquivo_saida):
         logger.error(f"Pasta não encontrada: {blocos_dir}")
         raise FileNotFoundError(f"Pasta não encontrada: {blocos_dir}")
 
-    arquivos = sorted(
-        os.path.join(blocos_dir, nome)
-        for nome in os.listdir(blocos_dir)
-        if nome.endswith(".pkl")
-    )
+    arquivos = listar_arquivos_de_dados(blocos_dir)
 
     if not arquivos:
-        logger.error(f"Nenhum bloco .pkl encontrado em: {blocos_dir}")
-        raise ValueError(f"Nenhum bloco .pkl encontrado em: {blocos_dir}")
+        logger.error(f"Nenhum bloco encontrado em: {blocos_dir}")
+        raise ValueError(f"Nenhum bloco encontrado em: {blocos_dir}")
 
     logger.info(f"Recombinação em streaming: {len(arquivos)} blocos")
     logger.info(f"Arquivo de saída: {arquivo_saida}")
@@ -60,7 +57,7 @@ def recombinar_blocos_em_streaming(blocos_dir, arquivo_saida):
 
     try:
         for caminho in tqdm(arquivos, desc="Recombinando blocos"):
-            bloco = pd.read_pickle(caminho)
+            bloco = ler_dados(caminho)
             tabela = pa.Table.from_pandas(bloco, preserve_index=False)
 
             # O escritor é criado com o schema do primeiro bloco e reaproveitado
