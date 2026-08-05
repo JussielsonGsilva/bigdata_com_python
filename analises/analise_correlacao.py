@@ -2,8 +2,15 @@ import pandas as pd
 import os
 import time
 
+import sys
+from pathlib import Path
 
-def analise_correlacao(blocks_dir="../data/processed/blocos_tratados"):
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.caminhos import BLOCOS_TRATADOS
+
+
+
+def analise_correlacao(blocks_dir=str(BLOCOS_TRATADOS)):
     inicio = time.time()
 
     arquivos = sorted(os.listdir(blocks_dir))

@@ -1,14 +1,22 @@
-import os
+"""
+Remove a pasta de chunks depois que os blocos já foram gerados.
+
+Executar a partir da raiz do projeto:
+    python clean_chunks.py
+"""
 import shutil
 
-def clean_chunks():
-    chunks_dir = "data/processed/chunks_dados_base"
+from src.caminhos import CHUNKS
 
-    if os.path.exists(chunks_dir):
-        shutil.rmtree(chunks_dir)
-        print(f"Pasta removida: {chunks_dir}")
+
+def clean_chunks():
+    """Apaga a pasta de chunks intermediários, se existir."""
+    if CHUNKS.exists():
+        shutil.rmtree(CHUNKS)
+        print(f"Pasta removida: {CHUNKS}")
     else:
         print("Pasta de chunks não encontrada.")
+
 
 if __name__ == "__main__":
     clean_chunks()

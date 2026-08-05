@@ -2,10 +2,17 @@ import pandas as pd
 import os
 import time
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.caminhos import BLOCOS, BLOCOS_TRATADOS
+
+
 
 def tratar_blocos(
-    blocks_dir="../data/processed/blocos",
-    output_dir="../data/processed/blocks_tratados"
+    blocks_dir=str(BLOCOS),
+    output_dir=str(BLOCOS_TRATADOS)
 ):
     inicio = time.time()
 

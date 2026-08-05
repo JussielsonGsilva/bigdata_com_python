@@ -3,9 +3,16 @@ import os
 import numpy as np
 import time
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.caminhos import BLOCOS_TRATADOS
+
+
 
 def analisar_valores(
-    blocks_dir="../data/processed/blocos_tratados"
+    blocks_dir=str(BLOCOS_TRATADOS)
 ):
     inicio = time.time()
 

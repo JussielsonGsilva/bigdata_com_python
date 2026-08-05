@@ -3,7 +3,14 @@ import os
 import time
 from collections import defaultdict
 
-def analise_fraude(blocks_dir="../data/processed/blocos_tratados"):
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.caminhos import BLOCOS_TRATADOS
+
+
+def analise_fraude(blocks_dir=str(BLOCOS_TRATADOS)):
     inicio = time.time()
 
     arquivos = sorted(os.listdir(blocks_dir))

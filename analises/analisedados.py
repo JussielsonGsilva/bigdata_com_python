@@ -2,7 +2,14 @@ import pandas as pd
 import os
 import time
 
-def analisar_blocos(blocks_dir="../data/processed/blocos"):
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.caminhos import BLOCOS
+
+
+def analisar_blocos(blocks_dir=str(BLOCOS)):
     inicio = time.time()
 
     resultados = {
