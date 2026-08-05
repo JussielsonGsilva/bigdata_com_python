@@ -1,4 +1,10 @@
-pandas
-pyarrow
-tqdm
-loguru
+# Dependências diretas do projeto, com versões fixadas para que a
+# instalação seja reproduzível.
+#
+# Instalar com:  pip install -r requirements.txt
+
+pandas==3.0.1      # leitura em chunks e manipulação dos dados
+numpy==2.4.3       # percentis e estatísticas em analise_valores
+pyarrow==23.0.1    # leitura e escrita em Parquet, inclusive o streaming final
+tqdm==4.67.3       # barra de progresso das etapas longas
+loguru==0.7.3      # logs com rotação automática
