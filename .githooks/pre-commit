@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Impede que segredos e arquivos de backup entrem no repositório.
+#
+# O .gitignore evita o acidente comum, mas não protege contra um
+# "git add -f" distraído — e não faz nada por arquivo que já foi
+# rastreado antes de constar na lista.
+#
+# Uma vez commitado, o segredo fica no histórico para sempre: removê-lo
+# exige reescrever o histórico com git-filter-repo E rotacionar a senha
+# exposta, que deve ser considerada comprometida a partir do push.
+#
+# Este hook é versionado em .githooks/ e ativado com:
+#
+#     git config core.hooksPath .githooks
+#
+# A configuração é local a cada clone, então cada pessoa precisa rodar
+# esse comando uma vez após clonar.
+
+arquivosBloqueados=$(git diff --cached --name-only --diff-filter=ACM |
+    grep -E '(^|/)\.env$|\.bak$|\.old$|\.orig$|\.save$|\.swp$|~$')
+
+if [ -n "$arquivosBloqueados" ]; then
+    echo "ERRO: commit abortado — arquivos que nunca devem ser versionados:"
+    echo
+    echo "$arquivosBloqueados" | sed 's/^/  - /'
+    echo
+    echo "Remova do stage com: git restore --staged <arquivo>"
+    exit 1
+fi
+
+exit 0

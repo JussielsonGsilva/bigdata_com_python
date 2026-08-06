@@ -160,6 +160,27 @@ consumo real de memória — a economia da recombinação em streaming.
 
 ---
 
+## Hooks do Git
+
+O repositório traz um hook de `pre-commit` em `.githooks/` que aborta o commit se
+`.env` ou arquivos de backup (`.bak`, `.old`, `.orig`, `~`) entrarem no stage.
+
+Ative uma vez após clonar:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+A configuração é local a cada clone — o Git não permite que um repositório ative
+hooks sozinho, justamente para que baixar um projeto não execute código na sua
+máquina sem você pedir.
+
+O `.gitignore` já evita o acidente comum, mas não protege contra um `git add -f`
+distraído. E vale lembrar que ele **não** deixa de rastrear arquivo que já foi
+commitado antes de constar na lista: para isso é preciso `git rm --cached`.
+
+---
+
 ## Tecnologias
 
 - **Python 3** — pandas, numpy
