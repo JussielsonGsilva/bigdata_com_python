@@ -47,6 +47,16 @@ economizaria mais memória, mas `float32` tem cerca de 7 dígitos significativos
 — com valores que chegam a trilhões, centavos seriam arredondados. Há testes
 travando esse comportamento.
 
+**A remoção de duplicatas é por bloco, não global.** A etapa 3 trata um bloco
+por vez, então duas linhas idênticas só são reduzidas a uma se estiverem no
+mesmo bloco — um par que caiu em blocos diferentes sobrevive ao tratamento.
+Deduplicar globalmente exigiria manter as 179 milhões de linhas comparáveis ao
+mesmo tempo, que é exatamente o que este pipeline existe para evitar. Quem
+precisar da garantia global tem duas saídas: ordenar o CSV pela chave de
+duplicidade antes da etapa 1, para que as repetições caiam no mesmo bloco, ou
+rodar um `DISTINCT` sobre o Parquet final com uma ferramenta que trabalhe fora
+da memória (DuckDB, por exemplo).
+
 **Ordenação numérica.** Os arquivos são ordenados pelo número no nome, não
 alfabeticamente: `chunk_10` vem depois de `chunk_2`, e não antes.
 
@@ -97,11 +107,18 @@ python clean_chunks.py
 
 ### Análises
 
-Com os blocos tratados prontos:
+Depois da etapa 2, a base já pode ser inspecionada:
 
 ```bash
 cd analises
-python analisedados.py        # visão geral da base
+python analisedados.py        # visão geral da base — lê os blocos da etapa 2
+```
+
+As demais precisam dos **blocos tratados** (etapa 3): é ela que padroniza os
+nomes das colunas (`Amount Paid` → `amount_paid`) e cria as derivadas que
+várias delas usam (`hora`, `dia_semana`, `diferenca_valor`).
+
+```bash
 python analise_valores.py     # distribuição dos valores
 python analise_temporal.py    # volume e fraude ao longo do tempo
 python analise_bancos.py      # fluxo entre bancos
@@ -109,6 +126,11 @@ python analise_moedas.py      # moedas e sua relação com fraude
 python analise_fraude.py      # padrões de fraude
 python analise_correlacao.py  # correlação entre variáveis
 ```
+
+A diferença importa na hora de comparar os números: `analisedados.py` conta a
+base **antes** do tratamento, então o total de linhas dele é maior que o das
+outras análises — a etapa 3 descarta duplicatas e valores negativos pelo
+caminho.
 
 Os scripts funcionam sendo chamados de qualquer diretório — os caminhos são
 resolvidos a partir da raiz do projeto.
